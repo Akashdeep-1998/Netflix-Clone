@@ -6,6 +6,7 @@ import { db } from "./Auth";
 import { authContext } from "../Context/AuthContext";
 import { Link } from "react-router-dom";
 
+console.log("I am in 'features' branch.")
 const Account = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
