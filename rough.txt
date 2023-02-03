@@ -1,0 +1,29 @@
+import React, { useState, useEffect } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
+import axios from "axios";
+
+const ApiKey = "9fb406e57dd0cb627ea1fc037206ba90";
+const MovieDetail = () => {
+  const [movies, setMovies] = useState([]);
+  const { movieId } = useParams();
+  const [searchparams] = useSearchParams();
+  const img = searchparams.get("img");
+  const title = searchparams.get("title");
+  const overview = searchparams.get("overview");
+  const release_date = searchparams.get("release_date");
+
+    const recommendedMovies = async () => {
+    const result = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${ApiKey}&language=en-US&page=1`
+    );
+    console.log(result);
+    setMovies(result.data.result);
+  };
+
+  useEffect(() => {
+    recommendedMovies();
+    return () => {
+      recommendedMovies();
+    };
+  }, []);
