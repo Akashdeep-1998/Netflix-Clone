@@ -15,6 +15,9 @@ const Account = () => {
   const title = searchparams.get("title");
   const overview = searchparams.get("overview");
   const release_date = searchparams.get("release_date");
+  const rating = parseFloat(searchparams.get("rating"));
+
+  console.log("MovieDetail.js", typeof parseInt(rating));
 
   const leftSlider = () => {
     let left = document.getElementById(`${"slideShow"}`);
@@ -28,7 +31,8 @@ const Account = () => {
   useEffect(() => {
     const recommendedMovies = async () => {
       const result = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US&page=1`
+        // `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
       );
       console.log(result.data.results);
       if (result.data.results.length !== 0) {
@@ -41,7 +45,10 @@ const Account = () => {
       }
     };
     recommendedMovies();
-  }, [movieId]);
+    return () => {
+      recommendedMovies();
+    };
+  }, [movieId, rating]);
 
   return (
     <>
@@ -53,15 +60,20 @@ const Account = () => {
             src={`https://image.tmdb.org/t/p/original/${img}`}
             alt="Poster"
           />
-          <div className="w-full p-4 md:p-8 absolute top-[18%]">
+          <div className="text-sm sm:text-base w-full p-4 md:p-8 absolute top-[18%]">
             <h1 className="font-bold text-3xl md:text-5xl mb-6">{title}</h1>
 
-            <p className="text-white mb-1">
-              <b>Released on: </b>
+            <p className="text-gray-300 mb-1">
+              <b>Released:&nbsp;&nbsp;</b>
               {release_date}
             </p>
-            <p className="text-sm sm:text-base md:max-w-[70%] text-gray-200">
-              <b>Overview:</b> {overview}
+            <p className="text-gray-300 mb-1">
+              <b>Rating:&nbsp;&nbsp;</b>
+              {rating.toFixed(1)}/10
+            </p>
+            <p className="md:max-w-[70%] text-gray-200">
+              <b>Overview:&nbsp;&nbsp;</b>
+              {overview}
             </p>
           </div>
         </div>
@@ -87,8 +99,9 @@ const Account = () => {
               id={movie.id}
               img={movie.backdrop_path}
               title={movie.title}
-              release_date={movie.release_date}
               overview={movie.overview}
+              rating={movie.vote_average}
+              release_date={movie.release_date}
             />
           ))}
         </div>

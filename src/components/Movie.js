@@ -5,7 +5,7 @@ import { authContext } from "../Context/AuthContext";
 import { db } from "./Auth";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
-const Movie = ({ id, title, img, overview, release_date, }) => {
+const Movie = ({ id, title, img, overview, rating, release_date }) => {
   const [like, setLike] = useState(false);
   const { user } = useContext(authContext);
 
@@ -19,12 +19,14 @@ const Movie = ({ id, title, img, overview, release_date, }) => {
           title: title,
           img: img,
           overview: overview,
+          rating:rating,
           releasedDate: release_date,
         }),
       });
     }
   };
 
+  console.log("Movie.js",typeof(rating));
   return (
     <div
       id={id}
@@ -34,7 +36,7 @@ const Movie = ({ id, title, img, overview, release_date, }) => {
 
       <div className="absolute center top-0 left-0 w-full h-full bg-black/80 opacity-0 hover:opacity-100 duration-200">
         <Link
-          to={`/movie?id=${id}&title=${title}&img=${img}&release_date=${release_date}&overview=${overview}`}
+          to={`/movie?id=${id}&title=${title}&img=${img}&release_date=${release_date}&overview=${overview}&rating=${rating}`}
         >
           <p className="flex justify-center items-center whitespace-normal h-full text-white text-xs md:text-sm text-center">
             {title}

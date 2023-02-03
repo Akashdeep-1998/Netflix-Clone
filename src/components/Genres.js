@@ -54,6 +54,7 @@ const Genres = ({ title, fetchUrl, genreId }) => {
                   title={movie.title}
                   img={movie.backdrop_path}
                   overview={movie.overview}
+                  rating={movie.vote_average}
                   release_date={movie.release_date}
                 />
               )

@@ -65,7 +65,7 @@ const Account = () => {
       <h2 className="text-white font-bold md:text-xl p-4">My Movies</h2>
       {error ? (
         <h1 className=" text-gray-400 p-4">
-          You don't have your favourite movie(s).
+          You haven't picked your favourite movie(s).
         </h1>
       ) : (
         <div className="relative flex items-center group">
@@ -91,7 +91,7 @@ const Account = () => {
 
                 <div className="absolute center top-0 left-0 w-full h-full bg-black/80 opacity-0 hover:opacity-100 duration-200">
                   <Link
-                    to={`/movie?id=${movie.id}&title=${movie.title}&img=${movie.img}&release_date=${movie.releasedDate}&overview=${movie.overview}`}
+                    to={`/movie?id=${movie.id}&title=${movie.title}&img=${movie.img}&release_date=${movie.releasedDate}&overview=${movie.overview}&rating=${movie.rating}`}
                   >
                     <p className="flex justify-center items-center whitespace-normal h-full text-white text-xs md:text-sm text-center">
                       {movie.title}
