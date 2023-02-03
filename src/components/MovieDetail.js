@@ -31,8 +31,7 @@ const Account = () => {
   useEffect(() => {
     const recommendedMovies = async () => {
       const result = await axios.get(
-        // `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US&page=1`
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`
       );
       console.log(result.data.results);
       if (result.data.results.length !== 0) {
@@ -48,7 +47,7 @@ const Account = () => {
     return () => {
       recommendedMovies();
     };
-  }, [movieId, rating]);
+  }, [movieId]);
 
   return (
     <>
@@ -78,7 +77,7 @@ const Account = () => {
           </div>
         </div>
       </div>
-      <h2 className="text-white font-bold md:text-xl p-4">Recommended</h2>
+      <h2 className="text-white font-bold md:text-xl p-4">Similar Movies</h2>
       {error && (
         <h1 className=" text-gray-400 p-4">No recommended movies found.</h1>
       )}
