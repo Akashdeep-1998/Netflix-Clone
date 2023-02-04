@@ -23,7 +23,6 @@ const Main = () => {
         .get(requests.popularMovies)
         .then((result) => {
           setMovies(result.data.results);
-          // console.log(result.data.results);
         })
         .catch((err) => console.log(err));
     };
@@ -39,7 +38,6 @@ const Main = () => {
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
     );
     setVideoKey(result.data.results[0].key);
-    // console.log(result.data.results[0].key);
     setOpenModal(true);
   };
 

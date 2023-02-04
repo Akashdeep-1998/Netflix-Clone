@@ -5,7 +5,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 const Navbar = () => {
   const { user, logoutUser } = useContext(authContext);
   const location = useLocation();
-  console.log("Navbar.js",location.pathname)
 
   const navigate = useNavigate();
   const logoutHandler = async () => {

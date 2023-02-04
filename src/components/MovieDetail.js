@@ -24,7 +24,6 @@ const Account = () => {
   const release_date = searchparams.get("release_date");
   const rating = parseFloat(searchparams.get("rating"));
 
-  console.log("MovieDetail.js", typeof parseInt(rating));
 
   const leftSlider = () => {
     let left = document.getElementById(`${"slideShow"}`);
@@ -40,7 +39,6 @@ const Account = () => {
       const result = await axios.get(
         `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`
       );
-      console.log(result.data.results);
       if (result.data.results.length !== 0) {
         setMovies(
           result.data.results.filter((movies) => movies.backdrop_path !== null)
@@ -65,7 +63,6 @@ const Account = () => {
       setErrorModal(true);
     } else {
       setVideoKey(result.data.results[0].key);
-      console.log(result.data.results[0].key);
       setOpenModal(true);
     }
   };
@@ -137,7 +134,6 @@ const Account = () => {
       {error && (
         <h1 className=" text-gray-400 p-4">No recommended movies found.</h1>
       )}
-
       <div className="relative flex items-center group">
         <AiFillLeftCircle
           className="text-white absolute z-10 left-0 opacity-20 hover:opacity-90 cursor-pointer hidden group-hover:block"

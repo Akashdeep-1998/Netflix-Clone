@@ -1,15 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import Genres from "./Genres";
 import Main from "./Main";
 import requests from "../API";
-import { authContext } from "../Context/AuthContext";
 
 const Home = () => {
-  const { user } = useContext(authContext);
-
-  console.log("Home.js", user);
-console.log("API KEY:- ",process.env.REACT_APP_MOVIE_API_KEY);
-
   return (
     <div>
       <Main />

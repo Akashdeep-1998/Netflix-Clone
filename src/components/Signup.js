@@ -9,14 +9,13 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const { user, signupUser } = useContext(authContext);
+  const { signupUser } = useContext(authContext);
   const navigate = useNavigate();
 
   const onSignUpHandler = async () => {
     try {
       setLoading(true);
       await signupUser(email, password);
-      console.log(user);
       navigate("/");
       setLoading(false);
     } catch (err) {
