@@ -75,7 +75,7 @@ const Account = () => {
         <div className="w-full h-full">
           <div className="w-full h-[450px] bg-gradient-to-r from-black/70 absolute"></div>
           {errorModal && (
-            <div className="font-bold text-red-600 absolute z-[100] w-full h-[450px] bg-black/90 text-center">
+            <div className=" overflow-hidden font-bold text-red-600 absolute z-[100] w-full h-[450px] bg-black/90 text-center">
               <p
                 className="relative top-2 left-2 hover:cursor-pointer"
                 onClick={() => setErrorModal(false)}
