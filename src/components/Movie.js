@@ -19,14 +19,13 @@ const Movie = ({ id, title, img, overview, rating, release_date }) => {
           title: title,
           img: img,
           overview: overview,
-          rating:rating,
+          rating: rating,
           releasedDate: release_date,
         }),
       });
     }
   };
 
-  console.log("Movie.js",typeof(rating));
   return (
     <div
       id={id}

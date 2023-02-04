@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
-
 import Movie from "./Movie";
 
 const Genres = ({ title, fetchUrl, genreId }) => {
@@ -26,6 +25,7 @@ const Genres = ({ title, fetchUrl, genreId }) => {
         })
         .catch((err) => console.log(err));
     };
+
     fetchMovies();
     return () => {
       fetchMovies();
