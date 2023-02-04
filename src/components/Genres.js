@@ -21,7 +21,6 @@ const Genres = ({ title, fetchUrl, genreId }) => {
         .get(fetchUrl)
         .then((movieData) => {
           setMovies(movieData.data.results);
-          // console.log(movieData);
         })
         .catch((err) => console.log(err));
     };

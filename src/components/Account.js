@@ -6,7 +6,6 @@ import { db } from "./Auth";
 import { authContext } from "../Context/AuthContext";
 import { Link } from "react-router-dom";
 
-console.log("I am in 'features' branch.")
 const Account = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
@@ -27,7 +26,6 @@ const Account = () => {
     await updateDoc(doc(db, "users", `${user?.email}`), {
       savedMovies: filteredMovies,
     });
-    console.log("filteredMovies:- ", filteredMovies);
   };
 
   useEffect(() => {
@@ -37,7 +35,6 @@ const Account = () => {
           setError(true);
         } else {
           setMovies(doc.data()?.savedMovies);
-          console.log(doc.data()?.savedMovies);
         }
       });
     };
