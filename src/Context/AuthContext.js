@@ -6,18 +6,13 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../components/Auth";
 
 export const authContext = createContext();
 
 const AuthContext = (props) => {
   const [user, setUser] = useState({});
-  // const [apiKey, setApiKey] = useState(null);
-
-  const getApiKeyHandler = async () => {
-    return await getDoc(doc(db, "api", "api_key")).data();
-  };
 
   const signupUser = async (email, password) => {
     await createUserWithEmailAndPassword(auth, email, password);
@@ -47,7 +42,6 @@ const AuthContext = (props) => {
         signupUser,
         loginUser,
         logoutUser,
-        getApiKeyHandler,
       }}
     >
       {props.children}
