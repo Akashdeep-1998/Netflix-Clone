@@ -35,15 +35,6 @@ const Account = () => {
     right.scrollLeft = right.scrollLeft + 500;
   };
 
-    const videoHandler = async (id) => {
-      const result = await axios.get(
-        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
-      );
-      setVideoKey(result.data.results[0].key);
-      // console.log(result.data.results[0].key);
-      setOpenModal(true);
-    };
-
   useEffect(() => {
     const recommendedMovies = async () => {
       const result = await axios.get(
@@ -64,6 +55,21 @@ const Account = () => {
       recommendedMovies();
     };
   }, [movieId, rating]);
+
+
+  const videoHandler = async (id) => {
+    const result = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
+    );
+    if (result.data.results.length === 0) {
+      setErrorModal(true);
+    } else {
+      setVideoKey(result.data.results[0].key);
+      console.log(result.data.results[0].key);
+      setOpenModal(true);
+    }
+  };
+
   return (
     <>
       <div className="w-full h-[450px] text-white">
